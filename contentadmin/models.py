@@ -28,7 +28,6 @@ class VrContract(models.Model):
     class Meta:
         db_table = u'vr_contract'
 
-
 class Status(models.Model):
     id = models.IntegerField(primary_key=True)
     status = models.TextField(unique=True)
@@ -36,7 +35,6 @@ class Status(models.Model):
     description = models.TextField()
     class Meta:
         db_table = u'status'
-
 
 class Content(models.Model):
     id = models.IntegerField(primary_key=True)

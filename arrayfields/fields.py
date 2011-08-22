@@ -24,8 +24,6 @@ class ArrayManyToManyRel(object):
     def get_related_field(self):
         return self.to._meta.pk
 
-
-
 class ArrayManyToManyField(RelatedField, Field):
     description = _("Many-to-many relationship via array db field")
     def __init__(self, to, **kwargs):
@@ -65,7 +63,6 @@ class ArrayManyToManyField(RelatedField, Field):
         pass
 
     def value_from_object(self, obj):
-        "Returns the value of this field in the given model instance."
         return getattr(obj, self.rel.manager_name).all()
 
     def save_form_data(self, instance, data):
@@ -189,32 +186,6 @@ class ArrayReverseManyRelatedObjectsDescriptor(object):
 
         return manager
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class LinksMultiWidget(forms.MultiWidget):
     def __init__(self, attrs=None):
         super(LinksMultiWidget, self).__init__((forms.TextInput(), forms.TextInput()), attrs)
@@ -228,17 +199,11 @@ class LinksMultiWidget(forms.MultiWidget):
         return ['','','']
 
 
-
-
 class StringArrayFormField(forms.Field):
     """
     Form field
     """
     widget = StringArray
-
-
-
-
 
 class StringArrayField(Field):
     """
@@ -250,6 +215,3 @@ class StringArrayField(Field):
         defaults.update(kwargs)
         
         return super(StringArrayField, self).formfield(**defaults)
-
-
-
