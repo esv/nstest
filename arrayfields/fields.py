@@ -90,7 +90,6 @@ class ArrayManyToManyField(RelatedField, Field):
         else:
             return value
 
-
 class ArrayReverseManyRelatedObjectsDescriptor(object):
     def __init__(self, field):
         self.field = field
@@ -183,21 +182,7 @@ class ArrayReverseManyRelatedObjectsDescriptor(object):
         manager.core_filters = {'%s__in' % foreign_pk:
                 getattr(instance, attname)}
         manager.model = field.rel.to
-
         return manager
-
-class LinksMultiWidget(forms.MultiWidget):
-    def __init__(self, attrs=None):
-        super(LinksMultiWidget, self).__init__((forms.TextInput(), forms.TextInput()), attrs)
-
-    def render(self, name, value, attrs=None):
-        #self.widgets = [forms.TextInput() for i in range(3)] #len(value)+5
-        #self.field.fields = [forms.CharField(required=False) for i in range(3)]
-        super(LinksMultiWidget, self).render(name, value, attrs)
-
-    def decompress(self,value):
-        return ['','','']
-
 
 class StringArrayFormField(forms.Field):
     """
