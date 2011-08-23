@@ -12,14 +12,14 @@ import arrayfields
 from datetime import datetime
 
 class Country(models.Model):
-    id = models.IntegerField(primary_key=True)
+    #id = models.IntegerField(primary_key=True)
     name = models.TextField(unique=True)
     title = models.TextField(unique=True)
     
     class Meta:
         db_table = u'country'
 
-    def __str__(self):
+    def __unicode__(self):
         return self.title
 
 class VrContract(models.Model):
@@ -34,7 +34,7 @@ class VrContract(models.Model):
     class Meta:
         db_table = u'vr_contract'
 
-    def __str__(self):
+    def __unicode__(self):
         return self.title
 
 class Status(models.Model):
