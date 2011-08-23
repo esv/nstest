@@ -17,6 +17,7 @@ class ArrayManyToManyRel(object):
         self.manager_name = manager_name
         self.multiple = True
         self.field_name = self.to._meta.pk.name
+        self.parent_link = False
 
     def is_hidden(sel):
         return False

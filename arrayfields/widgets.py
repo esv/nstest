@@ -16,7 +16,6 @@ class StringArrayRenderer(object):
         for v in self.value:
             yield TextInput().render(name, v, self.attrs)
             i += 1
-        yield TextInput().render(name, '', self.attrs)
 
     def __getitem__(self, idx):
         return TextInput(self.value[idx])
@@ -25,9 +24,12 @@ class StringArrayRenderer(object):
         return self.render()
 
     def render(self):
-        """Outputs a <ul> for this set of radio fields."""
-        return mark_safe(u'<ul>\n%s\n</ul>' % u'\n'.join([u'<li>%s</li>'
-                % w for w in self]))
+        add_class = '%s_addlink' % self.name
+        js = "javascript: p=document.getElementById('%s'); li=document.createElement('li'); i = document.createElement('input'); \
+            i.setAttribute('type', 'text'); i.setAttribute('name', '%s'); li.appendChild(i); p.parentNode.insertBefore(li,p);" % (add_class, self.name)
+        return mark_safe(u'<ul>\n%s\n<li id="%s"><a href="%s"><img src="/static/admin/img/icon_addlink.gif" \
+            width="10" height="10" alt="Add Another"></a></li></ul>' % (u'\n'.join([u'<li>%s</li>'
+                % w for w in self]), add_class, js))
 
 class StringArray(Widget):
     renderer = StringArrayRenderer
@@ -43,4 +45,4 @@ class StringArray(Widget):
         return self.get_renderer(name, value, attrs).render()
 
     def value_from_datadict(self, data, files, name):
-        return data.getlist(name)
+        return [i for i in data.getlist(name) if i]

@@ -2,16 +2,20 @@ from django.contrib import admin
 from nstest.contentadmin.models import Country, VrContract, Content, Status
 
 class CountryAdmin(admin.ModelAdmin):
+    #exclude = ('id',)
     pass
 
 class VrContractAdmin(admin.ModelAdmin):
-	pass
-	
+    #exclude = ('id',)
+    pass
+
 class ContentAdmin(admin.ModelAdmin):
-	pass
-	
+    #exclude = ('id',)
+    pass
+
 class StatusAdmin(admin.ModelAdmin):
-	pass
+    #exclude = ('id',)
+    pass
 
 admin.site.register(Country, CountryAdmin)
 admin.site.register(VrContract, VrContractAdmin)
